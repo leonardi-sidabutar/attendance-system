@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons';
 import { Button, Flex, Layout, Menu, Typography  } from 'antd';
 import logo from '../../assets/img/ajendam_im-logo.png'
-import AppContextProvider, { AppContext } from '../../context/context';
+import { AppContext } from '../../context/context';
 import Routes from '../../routes/route';
 
 const {Title} = Typography;
@@ -18,11 +18,14 @@ const App = () => {
   // State
   const [collapsed, setCollapsed] = useState(true);
   // Context
-  const {route} = useContext(AppContext)
-  console.log(route)
+  const {route,handleRouteChange} = useContext(AppContext)
+
+  // Function Click Menu to Change State Route
+  const handleClickSideBar = (e) => {
+    handleRouteChange(e.key);
+  };
 
   return (
-    <AppContextProvider>
       <Layout>
         <Sider trigger={null} collapsible collapsed={collapsed} theme='dark' style={{background:'#1D1E21'}}>
           <div className="demo-logo-vertical" />
@@ -44,15 +47,17 @@ const App = () => {
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={['1']}
+            onClick={handleClickSideBar}
+            defaultSelectedKeys={[route]}
+            selectedKeys={[route]}
             items={[
               {
-                key: '1',
+                key: 'dashboard',
                 icon: <AppstoreOutlined />,
                 label: 'Dashboard',
               },
               {
-                key: '2',
+                key: 'anggota',
                 icon: <UserOutlined />,
                 label: 'Anggota',
               },
@@ -88,9 +93,8 @@ const App = () => {
             style={{
               marginTop:15,
               background: '#1D1E21',
-              color:'white',
-              margin: '24px 16px',
-              padding: 24,
+              margin: '16px',
+              padding: 15,
               minHeight: 280,
               borderRadius: 5,
             }}
@@ -99,7 +103,6 @@ const App = () => {
           </Content>
         </Layout>
       </Layout>
-    </AppContextProvider>
   );
 };
 export default App;
