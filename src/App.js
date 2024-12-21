@@ -17,8 +17,6 @@ const App = () => {
     setLoading(loadingStatus);
   };
 
-  console.log(authenticated)
-
   return (
     <AppContextProvider>
       {

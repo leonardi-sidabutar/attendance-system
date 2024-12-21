@@ -1,0 +1,42 @@
+{
+    "users": {
+      "user1": {
+        "id": "1",
+        "username": "leo",
+        "password": "123",
+        "name": "Leonardi",
+        "role": "admin"
+      },
+      "user2": {
+        "id": "2",
+        "username": "gusti",
+        "password": "123",
+        "name": "Gusti Tarigan",
+        "role": "admin"
+      },
+      "user3": {
+        "id": "3",
+        "username": "rico",
+        "password": "123",
+        "name": "Rico Bayakta",
+        "role": "anggota"
+      }
+    },
+    "attendance": {
+      "2024-12-21": {
+        "user1": {
+          "idAttendance": "1",
+          "datetime": "2024-12-21T09:00:00Z",
+          "status": "present",
+          "reason": ""
+        },
+        "user2": {
+          "idAttendance": "2",
+          "datetime": "2024-12-21T09:30:00Z",
+          "status": "absent",
+          "reason": "Sick"
+        }
+      }
+    }
+  }
+  

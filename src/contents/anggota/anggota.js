@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Space, Table, Tag } from 'antd';
+// FireBase
+import app from "../../firebaseConfig"
+import {getDatabase,ref,get} from 'firebase/database';
+
 const columns = [
   {
     title: 'Name',
@@ -69,73 +73,42 @@ const data = [
     address: 'Sydney No. 1 Lake Park',
     tags: ['cool', 'teacher'],
   },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
 ];
 const Anngota = () => {
+
+  const [load, setLoad] = useState(false);
+
+  useEffect(()=>{
+    const fetchUser = async()=>{
+      try {
+        setLoad(true);
+        
+        const db = getDatabase(app);
+        const dbRef = ref(db,"users");
+        const snapshot = await get(dbRef);
+
+        if(snapshot.exists()){
+          console.log("users data: ",snapshot.val());
+        }else{
+          console.log("No Data Available")
+        }
+      } catch (error) {
+        console.error("Error Fetching Data Users:",error)
+      } finally {
+        setLoad(false)
+      }
+    }
+    fetchUser();
+  },[])
+
   return(
-    <Table columns={columns} dataSource={data} theme={'dark'} scroll={{ x: 'max-content' }}/>
+    <>
+      {
+        load ?
+          (<p style={{color:'white'}}>Tunggu...</p>) : ('')
+      }
+      <Table columns={columns} dataSource={data} theme={'dark'} scroll={{ x: 'max-content' }}/>
+    </>
   )
 }
 export default Anngota;
