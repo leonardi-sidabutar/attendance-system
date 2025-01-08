@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Table, Typography, Modal, Form, Input, Button, message } from "antd";
+import {UserAddOutlined} from '@ant-design/icons';
 // Firebase
 import app from "../../firebaseConfig";
 import { getDatabase, ref, get, set, remove, push } from "firebase/database";
@@ -140,12 +141,12 @@ export default function Anggota() {
     <>
       <Row align="middle" justify="space-between" style={{ marginBottom: 20 }}>
         <Col>
-          <Title level={2} style={{ lineHeight: "1.3em", color: "white", margin: 0 }}>
+          <Title level={3} style={{ lineHeight: "1.3em", color: "white", margin: 0 }}>
             List Anggota
           </Title>
         </Col>
         <Col>
-          <Button type="primary" onClick={() => setIsInsertModalOpen(true)}>
+          <Button className="tombolAdd" type="primary" onClick={() => setIsInsertModalOpen(true)} icon={<UserAddOutlined />}>
             Tambah Anggota
           </Button>
         </Col>

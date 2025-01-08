@@ -89,16 +89,7 @@ const App = () => {
               <Title level={3} style={{color:'#E8E8E8',margin:0,lineHeight:1}}>Dashboard</Title>
             </Flex>
           </Header>
-          <Content
-            style={{
-              marginTop:15,
-              background: '#1D1E21',
-              margin: '16px',
-              padding: 15,
-              minHeight: 280,
-              borderRadius: 5,
-            }}
-          >
+          <Content className='layout-content'>
             <Routes/>
           </Content>
         </Layout>
