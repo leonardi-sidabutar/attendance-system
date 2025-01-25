@@ -72,21 +72,19 @@ const App = () => {
               padding: 0,
               borderRadius:5,
               background: '#1D1E21',
-            }}
-          >
+            }}>
             <Flex align='center'>
               <Button
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 onClick={() => setCollapsed(!collapsed)}
                 style={{
-                  color:'white',
                   fontSize: '16px',
                   width: 64,
                   height: 64,
                 }}
               />
-              <Title level={3} style={{color:'#E8E8E8',margin:0,lineHeight:1}}>Dashboard</Title>
+              <Title level={3} style={{margin:0,lineHeight:1}}>Dashboard</Title>
             </Flex>
           </Header>
           <Content className='layout-content'>
